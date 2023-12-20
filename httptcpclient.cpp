@@ -11,7 +11,11 @@ string BeforeSplash(string url)
 string AfterSplash(string url)
 {
     size_t pos = url.find('/');
-    return url.substr(pos);
+    if(pos != string::npos){
+        return url.substr(pos);
+    }else{
+        return "/";
+    }
 }
 
 bool HttpTcpClientCLI::getHTTP (const string& url)
