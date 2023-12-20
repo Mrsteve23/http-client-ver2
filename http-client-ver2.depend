@@ -64,12 +64,12 @@
 	<errno.h>
 	"tcpsocket.h"
 
-1701142535 source:c:\users\ngoho\onedrive\máy tính\http-client-ver2\httptcpclient.cpp
+1703057644 source:c:\users\ngoho\onedrive\máy tính\http-client-ver2\httptcpclient.cpp
 	"httptcpclient.h"
 	<iostream>
 	<string>
 
-1701142553 c:\users\ngoho\onedrive\máy tính\http-client-ver2\httptcpclient.h
+1701444376 c:\users\ngoho\onedrive\máy tính\http-client-ver2\httptcpclient.h
 	"tcpclient.h"
 
 1700209101 source:c:\users\dell\documents\http-client-ver2\cli.cpp
@@ -137,7 +137,7 @@
 	"tcpsocket.h"
 	"httptcpclient.h"
 
-1701142559 source:c:\users\ngoho\onedrive\máy tính\http-client-ver2\httpcli.cpp
+1701142913 source:c:\users\ngoho\onedrive\máy tính\http-client-ver2\httpcli.cpp
 	"httpcli.h"
 	<iostream>
 

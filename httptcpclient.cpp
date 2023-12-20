@@ -2,12 +2,14 @@
 #include <iostream>
 #include <string>
 
-string BeforeSplash(string url) {
+string BeforeSplash(string url)
+{
     size_t pos = url.find('/');
     return url.substr(0, pos);
 }
 
-string AfterSplash(string url) {
+string AfterSplash(string url)
+{
     size_t pos = url.find('/');
     return url.substr(pos);
 }
@@ -28,8 +30,9 @@ bool HttpTcpClientCLI::getHTTP (const string& url)
         httpRequest.append("Host: "+ BeforeSplash(url) + "\r\n");
         httpRequest.append("Connection: keep-alive\r\n");
         httpRequest.append("\r\n");
-        cout << httpRequest;
+        cout << httpRequest << endl;
         int byte_sent = sendStringRequest(httpRequest);  // gui ban tin Echo request
+        cout << byte_sent << endl;
         if(byte_sent > 0) // neu gui thanh cong request
         {
             // chuan bi nhan phan hoi tu HTTP Server
@@ -37,7 +40,6 @@ bool HttpTcpClientCLI::getHTTP (const string& url)
             int byte_recv = 0; // tong so byte nhan lai
             int bytes; // so byte nhan trong 1 lan
             char buffer[256]; // bo dem buffer kich thuoc 128 byte
-
             // vong lap nhan phan hoi tu Echo Server
             do
             {
@@ -48,8 +50,8 @@ bool HttpTcpClientCLI::getHTTP (const string& url)
                     httpResponse += buffer; // ghep xau nhan duoc trong buffer vao ket qua response
                 }
             }
-            while(bytes>0);
-
+            while(bytes > 0);
+            cout << "byte recvice: " << byte_recv << endl;
             if(bytes==0)
             {
                 cout <<"Server da dong ket noi" << endl;
@@ -59,14 +61,11 @@ bool HttpTcpClientCLI::getHTTP (const string& url)
             {
                 cout << "Loi: nhan response" << endl;
             }
-
-
         }
         else
         {
             cout << "Loi: gui request" << endl;
         }
-
     }
     return true;
 }
@@ -88,10 +87,13 @@ bool HttpTcpClientCLI::postHTTP (const string& url, const string& msv)
         httpRequest.append("Content-Type: application/json\r\n");
         httpRequest.append("Host: "+ BeforeSplash(url) + "\r\n");
         httpRequest.append("Content-Length: " + to_string(cLength) +"\r\n");
+        httpRequest.append("Connection: close\r\n");
         httpRequest.append("\r\n");
         httpRequest.append(body);
-        cout << httpRequest;
+        cout << httpRequest << endl;
         int byte_sent = sendStringRequest(httpRequest);  // gui ban tin Echo request
+        cout << byte_sent << endl;
+
         if(byte_sent > 0) // neu gui thanh cong request
         {
             // chuan bi nhan phan hoi tu HTTP Server
@@ -111,7 +113,7 @@ bool HttpTcpClientCLI::postHTTP (const string& url, const string& msv)
                 }
             }
             while(bytes>0);
-
+            cout << "byte recvice: " << byte_recv << endl;
             if(bytes==0)
             {
                 cout <<"Server da dong ket noi" << endl;
@@ -128,6 +130,7 @@ bool HttpTcpClientCLI::postHTTP (const string& url, const string& msv)
         {
             cout << "Loi: gui request" << endl;
         }
+
 
     }
     return true;
