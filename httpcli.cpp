@@ -4,7 +4,7 @@
 
 HttpClientCLI::HttpClientCLI():CmdLineInterface("Http Client>")
 {
-    cout << "\033[1;32m" << R"(
+    cout << R"(
 +======================================================================================+
 | |     | ___ ___  __     __ |   *  __      ___  \    / __  __   __ *  __     |   __   |
 | |_____|  |   |  |__)   /   |   | |_  |\ |  |    \  / |_  |__) (_  | /  \ |\ |    _)  |
@@ -26,7 +26,6 @@ void HttpClientCLI::initCmd()
    // add code here
    addCmd("open",CLI_CAST(&HttpClientCLI::doOpen));
    addCmd("close",CLI_CAST(&HttpClientCLI::doClose));
-   addCmd("get",CLI_CAST(&HttpClientCLI::doGet));
    addCmd("help",CLI_CAST(&HttpClientCLI::doHelp));
    addCmd("post",CLI_CAST(&HttpClientCLI::doPost));
    addCmd("put",CLI_CAST(&HttpClientCLI::doPut));
@@ -35,7 +34,7 @@ void HttpClientCLI::initCmd()
 void HttpClientCLI::doHelp(string cmd_argv[], int cmd_argc)
 {
     cout << "Please use the following commands:" << endl;
-    cout << "- open  hostname [port]    Mo ket noi den Echo server" << endl;
+    cout << "- open  hostname [port]    Mo ket noi den HTTP server" << endl;
     cout << "- close                    Dong ket noi" << endl;
     cout << "- help                     Tro giup" << endl;
     cout << "- quit                     Ket thuc chuong trinh" << endl;
@@ -45,38 +44,6 @@ void HttpClientCLI::doHelp(string cmd_argv[], int cmd_argc)
 
 /*
     get [URL]
-*/
-
-void HttpClientCLI::doGet(string cmd_argv[], int cmd_argc)
-{
-    if(cmd_argc==2)
-    {
-       //add code here
-       bool ok = client.getHTTP(cmd_argv[1]);
-       if(ok)
-       {
-           cout << "GET done!" << endl;
-       }
-    }
-    else if(cmd_argc==1)
-    {
-       string url;
-       cout << "Nhap URL: ";
-       getline(cin, url);
-       bool ok = client.getHTTP(url);
-       if(ok)
-       {
-           cout << "GET done!" << endl;
-       }
-    }
-    else
-    {
-        cout << "Cu phap lenh khong chinh xac" << endl;
-    }
-}
-
-/*
-    post [URL] <msv>
 */
 
 void HttpClientCLI::doPost(string cmd_argv[], int cmd_argc)

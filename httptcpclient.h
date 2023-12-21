@@ -8,7 +8,6 @@ class HttpTcpClientCLI: public TcpClient
 private:
 
 public:
-    bool getHTTP(const string& url);
     bool postHTTP(const string& url, const string& msv);
     bool putHTTP (const string& url, const string& msv, const string& path);
     string HttpResponse(int byte_sent);

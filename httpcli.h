@@ -16,7 +16,6 @@ public:
 private:
    //add code here
 
-   void doGet(string cmd_argv[], int cmd_argc);
    void doOpen(string cmd_argv[], int cmd_argc);
    void doClose(string cmd_argv[], int cmd_argc);
    void doHelp(string cmd_argv[], int cmd_argc);
