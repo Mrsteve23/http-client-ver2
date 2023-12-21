@@ -26,10 +26,10 @@ void HttpClientCLI::initCmd()
    // add code here
    addCmd("open",CLI_CAST(&HttpClientCLI::doOpen));
    addCmd("close",CLI_CAST(&HttpClientCLI::doClose));
-   //addCmd("echo",CLI_CAST(&HttpClientCLI::doEcho));
    addCmd("get",CLI_CAST(&HttpClientCLI::doGet));
    addCmd("help",CLI_CAST(&HttpClientCLI::doHelp));
    addCmd("post",CLI_CAST(&HttpClientCLI::doPost));
+   addCmd("put",CLI_CAST(&HttpClientCLI::doPut));
 }
 
 void HttpClientCLI::doHelp(string cmd_argv[], int cmd_argc)
@@ -39,8 +39,8 @@ void HttpClientCLI::doHelp(string cmd_argv[], int cmd_argc)
     cout << "- close                    Dong ket noi" << endl;
     cout << "- help                     Tro giup" << endl;
     cout << "- quit                     Ket thuc chuong trinh" << endl;
-    cout << "- get [URL]                Su dung method GET" << endl;
     cout << "- post [URL] <MSV>         Su dung method POST" << endl;
+    cout << "- put [URL] <MSV> <path>   Su dung method PUT" << endl;
 }
 
 /*
@@ -165,38 +165,34 @@ void HttpClientCLI::doClose(string cmd_argv[], int cmd_argc)
     cout << "Da dong ket noi." << endl;
 }
 
-/*
-    echo  [msg]
-    echo
-*/
-
-/*
-void HttpClientCLI::doEcho(string cmd_argv[], int cmd_argc)
+void HttpClientCLI::doPut(string cmd_argv[], int cmd_argc)
 {
-    if(cmd_argc==2)
+    if(cmd_argc==4)
     {
-        // add code here
-        bool ok = client.echo(cmd_argv[1]);
-        if(ok)
-            cout << "Echo thanh cong." << endl;
+       //add code here
+       bool ok = client.putHTTP(cmd_argv[1], cmd_argv[2], cmd_argv[3]);
+       if(ok)
+       {
+           cout << "PUT done!" << endl;
+       }
     }
-    else if(cmd_argc == 1)
+    else if(cmd_argc==1)
     {
-        // add code here
-        string msg;
-        cout << "Nhap ban tin:";
-        getline(cin, msg);
-        bool ok = client.echo(msg);
-        if(ok)
-            cout << "Echo thanh cong." << endl;
+       string url, msv, path;
+       cout << "Nhap URL: ";
+       getline(cin, url);
+       cout << "Nhap MSV: ";
+       getline(cin, msv);
+       cout << "Nhap duong dan: ";
+       getline(cin, path);
+       bool ok = client.putHTTP(url, msv, path);
+       if(ok)
+       {
+           cout << "Put done!" << endl;
+       }
     }
     else
     {
-        cout << "Invalid arguments" << endl;
+        cout << "Cu phap lenh khong chinh xac" << endl;
     }
 }
-*/
-
-
-
-

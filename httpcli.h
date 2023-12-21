@@ -18,10 +18,10 @@ private:
 
    void doGet(string cmd_argv[], int cmd_argc);
    void doOpen(string cmd_argv[], int cmd_argc);
-   //void doEcho(string cmd_argv[], int cmd_argc);
    void doClose(string cmd_argv[], int cmd_argc);
    void doHelp(string cmd_argv[], int cmd_argc);
    void doPost(string cmd_argv[], int cmd_argc);
+   void doPut(string cmd_argv[], int cmd_argc);
 };
 
 

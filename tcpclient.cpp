@@ -131,6 +131,7 @@ int TcpClient::recvStringBuffer(char* buffer, unsigned int bufLen)
         *buffer = 0;
         return -1;
     }
+    delete buffer;
 }
 
 
